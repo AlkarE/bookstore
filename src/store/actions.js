@@ -1,6 +1,6 @@
 import router from '../router'
 
-const DATA_URL = `http://127.0.0.1:3000/`
+const DATA_URL = `http://207.154.236.149:3000/`
 
 export const fetchBookData = async ({state, commit}) => {
   try {
@@ -11,7 +11,6 @@ export const fetchBookData = async ({state, commit}) => {
     }
     const res = await fetch(DATA_URL, opt)
     const data = await res.json()
-    global.console.log(data)
     state.fetchedData = await Array.from(data)
     await commit('updateScrollData', data)
     await commit('makeCart')

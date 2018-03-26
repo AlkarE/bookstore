@@ -5,7 +5,7 @@ import { store } from './store'
 import SocialSharing from 'vue-social-sharing'
 
 import Vuetify from 'vuetify'
-import './assets/vuetify.min.css'
+import 'df000.ru.bookstore/vuetify.min.css'
 
 Vue.use(Vuetify)
 Vue.use(SocialSharing)
