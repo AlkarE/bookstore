@@ -1,10 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import ShowCase from './views/ShowCase.vue'
-import ProductPage from './views/ProductPage/ProductPage.vue'
-import UserProfile from './views/User/UserProfile.vue'
-import PurchasePage from './views/PurchasePage/PurchasePage.vue'
-import Error404 from './views/Error404.vue'
+// import ShowCase from './views/ShowCase.vue'
+const ShowCase = () => import('./views/ShowCase.vue')
+const ProductPage = () => import('./views/ProductPage/ProductPage.vue')
+const UserProfile = () => import('./views/User/UserProfile.vue')
+const PurchasePage = () => import('./views/PurchasePage/PurchasePage.vue')
+const Error404 = () => import('./views/Error404.vue')
+// import ProductPage from './views/ProductPage/ProductPage.vue'
+// import UserProfile from './views/User/UserProfile.vue'
+// import PurchasePage from './views/PurchasePage/PurchasePage.vue'
+// import Error404 from './views/Error404.vue'
 
 Vue.use(Router)
 

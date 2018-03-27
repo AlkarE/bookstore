@@ -16,7 +16,8 @@ module.exports = {
         })
       ],
       output: {
-        path: path.join(__dirname, '/cool-build')
+        path: path.join(__dirname, '/cool-build'),
+        filename: 'js/bookstore/[name].js'
       }
     }
   }
