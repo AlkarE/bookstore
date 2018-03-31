@@ -21,7 +21,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-toolbar >
+    <v-toolbar>
       <v-btn
         icon
         class="hidden-md-and-up"
@@ -30,7 +30,7 @@
         <v-icon>menu</v-icon>
       </v-btn>
 
-      <v-toolbar-title v-text="siteName" class="cur" @click='goIndex'></v-toolbar-title>
+      <v-toolbar-title class="cur" @click='goIndex' @click.middle='goIndex'>Book Store</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items v-once class="hidden-sm-and-down">
         <v-btn
@@ -50,7 +50,6 @@ export default {
   name: 'AppHeader',
   data: () => ({
     drawer: false,
-    siteName: 'Book Store',
     navLinks: [
       { link: '../../', title: 'Обо мне', icon: 'home' },
       { link: '../projects-area.html', title: 'Мои проекты', icon: 'build' }

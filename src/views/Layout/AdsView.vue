@@ -2,9 +2,9 @@
   <!-- fake ads block -->
   <v-container fluid class="re_ad">
     <v-layout v-bind="binding" justify-center>
-      <v-flex class="ma-1">
-        <v-card class="cur pa-1" @click='goAds("ticket")'>
-          <p align='center' class="_d-tit">ads is here!</p>
+      <v-flex class="ma-1" @click='goAds("ticket")' @click.middle='goAds("ticket")'>
+        <v-card class="cur pa-1">
+          <p align='center' class="re_ad--title">ads is here!</p>
           <v-card-media
             src='http://img10.lostpic.net/2017/09/21/b3980a41d38a60bfe0d0b9e6fa62e3b8.png'
             contain
@@ -18,9 +18,9 @@
         </v-card>
       </v-flex>
 
-      <v-flex class="ma-1">
-        <v-card class="cur" @click='goAds("quiz")'>
-          <p align='center' class="_d-tit mb-1">Проверьте Ваши знания!</p>
+      <v-flex class="ma-1" @click='goAds("quiz")' @click.middle='goAds("quiz")'>
+        <v-card class="cur">
+          <p align='center' class="re_ad--title mb-1">Проверьте Ваши знания!</p>
           <v-card-media
             src='http://img10.lostpic.net/2017/09/21/240c79cd7c9f762c715b9b99fd73bcc4.jpg'
             contain
@@ -69,7 +69,7 @@ export default {
   top: 14%;
 }
 
-._d-tit {
+.re_ad--title {
   font-size: 2.5vh;
   font-weight: 400;
 }

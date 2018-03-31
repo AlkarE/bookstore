@@ -1,5 +1,5 @@
 const http = require('http')
-const books = require('../src/assets/bookDescription.json')
+const books = require('./assets/bookDescription.json')
 
 const app = http.createServer()
 

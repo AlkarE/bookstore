@@ -1,6 +1,7 @@
 import router from '../router'
 
-const DATA_URL = `http://207.154.236.149:3000/`
+const DATA_URL = `http://159.65.201.166:3000/`
+// const DATA_URL = `http://localhost:3000/`
 
 export const fetchBookData = async ({state, commit}) => {
   try {

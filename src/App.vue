@@ -8,7 +8,7 @@
       <router-view/>
     </v-content>
 
-    <scrollUp />
+    <ScrollUp />
     <!-- Возможно тут должен быть футер -->
   </v-app>
 </template>
@@ -16,7 +16,7 @@
 <script>
 /* @ is an alias to ./src */
 import AppHeader from '@/components/AppHeader.vue'
-import scrollUp from '@/components/scrollUp.vue'
+import ScrollUp from '@/components/ScrollUp.vue'
 import { mapGetters } from 'vuex'
 import NotificationPanel from '@/components/NotificationPanel'
 
@@ -24,7 +24,7 @@ export default {
   name: 'App',
   components: {
     AppHeader,
-    scrollUp,
+    ScrollUp,
     NotificationPanel
   },
   computed: {
