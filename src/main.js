@@ -3,11 +3,8 @@ import App from './App.vue'
 import router from './router'
 import { store } from './store'
 import SocialSharing from 'vue-social-sharing'
+import 'babel-polyfill'
 
-// import Vuetify from 'vuetify'
-import 'df000.ru.bookstore/vuetify.min.css'
-
-// Vue.use(Vuetify)
 import VApp from 'vuetify/es5/components/VApp'
 import Vuetify from 'vuetify/es5/components/Vuetify'
 import VNavigationDrawer from 'vuetify/es5/components/VNavigationDrawer'
@@ -27,8 +24,9 @@ import VSelect from 'vuetify/es5/components/VSelect'
 import VBadge from 'vuetify/es5/components/VBadge'
 import VForm from 'vuetify/es5/components/VForm'
 import VTabs from 'vuetify/es5/components/VTabs'
+import VSubheader from 'vuetify/es5/components/VSubheader'
 
-// require('vuetify/src/stylus/app.styl')
+require('vuetify/src/stylus/app.styl')
 
 Vue.use(Vuetify, {
   components: {
@@ -50,7 +48,8 @@ Vue.use(Vuetify, {
     VSnackbar,
     VMenu,
     VForm,
-    VTabs
+    VTabs,
+    VSubheader
   }
 })
 Vue.use(SocialSharing)

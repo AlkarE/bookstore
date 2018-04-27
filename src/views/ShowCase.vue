@@ -4,7 +4,6 @@
       <AdsView />
     </v-flex>
     <TopPanel/>
-    <!--  -->
     <v-layout id="listener-bot">
       <v-flex sm12 md10 class="mb-3 py-3">
         <transition name="fade" appear>

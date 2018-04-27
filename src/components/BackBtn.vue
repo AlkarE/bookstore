@@ -5,7 +5,7 @@
       ? require("../assets/icons/back_l.svg")
       : require("../assets/icons/back_d.svg")'
     alt='go back'
-    title="Назад"
+    title="На главную"
     @click="goBack"
   />
 </template>
@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     goBack () {
-      this.$router.go(-1)
+      this.$router.push('/')
     }
   }
 }

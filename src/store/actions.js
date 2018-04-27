@@ -1,17 +1,13 @@
 import router from '../router'
+import axios from 'axios'
 
-const DATA_URL = `http://159.65.201.166:3000/`
-// const DATA_URL = `http://localhost:3000/`
+// const DATA_URL = `http://159.65.201.166:3000/`
+const DATA_URL = `http://localhost:3000/`
 
 export const fetchBookData = async ({state, commit}) => {
   try {
-    const opt = {
-      method: 'GET',
-      mode: 'cors',
-      credentials: 'omit'
-    }
-    const res = await fetch(DATA_URL, opt)
-    const data = await res.json()
+    const res = await axios.get(DATA_URL)
+    const data = res.data
     state.fetchedData = await Array.from(data)
     await commit('updateScrollData', data)
     await commit('makeCart')
@@ -23,13 +19,8 @@ export const fetchBookData = async ({state, commit}) => {
 
 export const fetchDirectBook = async ({state}, id) => {
   try {
-    const opt = {
-      method: 'GET',
-      mode: 'cors',
-      credentials: 'omit'
-    }
-    const res = await fetch(DATA_URL, opt)
-    const data = await res.json()
+    const res = await axios.get(DATA_URL)
+    const data = res.data
     const bookArr = await Array.from(data)
     state.product = await bookArr.find(book => book.id === +id)
   } catch (err) {

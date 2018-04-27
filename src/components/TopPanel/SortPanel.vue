@@ -5,6 +5,7 @@
       v-model="sel"
       label="Сортировать:"
       single-line
+      append-icon=''
     ></v-select>
   </section>
 </template>

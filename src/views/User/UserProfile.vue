@@ -73,7 +73,7 @@ export default {
       if (vm.$store.getters.userLogged === true) {
         return vm.$router.push(to.path)
       } else {
-        global.console.log('no log')
+        // global.console.log('no log')
         vm.$router.replace({ path: '/404', query: { redirect: to.fullPath } })
       }
     })

@@ -1,5 +1,4 @@
 <template>
-  <!-- <img class="image" :src="srcImage" :alt='alt'> -->
   <v-card-media :src='lazySrc' :height='320' :contain='true' ></v-card-media>
 </template>
 
@@ -38,7 +37,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>

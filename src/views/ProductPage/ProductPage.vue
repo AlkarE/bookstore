@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="app-container">
     <BackBtn />
-    <div v-if="!product">loading</div>
+    <div v-if="!product">loading...</div>
     <transition name="fade" appear v-else>
       <v-layout justify-center>
         <v-flex xs2 class="hidden-sm-and-down">
@@ -33,7 +33,11 @@
                     <v-layout>
                       <span class="red--text">Цена: {{product.price}} руб.</span>
                       <v-spacer></v-spacer>
-                      <v-icon @click="addBookmark" class="cur">bookmark</v-icon>
+                      <BuyBtn :item='product.Bookname' class="buy-btn" />
+                      <div @click="addBookmark" class="cur" title="Добавить в закладки">
+                        <img v-if='themeMode === `theme--dark`' src="data:image/svg+xml,%3Csvg fill='%23FFFFFF' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E" alt="add to bookmark">
+                        <img v-else src="data:image/svg+xml,%3Csvg fill='%23000000' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E" alt="add to bookmark">
+                      </div>
                     </v-layout>
                   </v-flex>
                   <v-flex xs12>
@@ -81,13 +85,15 @@ import AdsView from '@/views/Layout/AdsView.vue'
 import RecBooks from './RecommendedBooks.vue'
 import BackBtn from '@/components/BackBtn'
 import { mapGetters } from 'vuex'
+import BuyBtn from '@/components/Layout/BuyBtn'
 
 export default {
   name: 'ProductPage',
   components: {
     AdsView,
     RecBooks,
-    BackBtn
+    BackBtn,
+    BuyBtn
   },
   beforeMount () {
     if (!this.product) {
@@ -108,7 +114,7 @@ export default {
       if (this.$vuetify.breakpoint.xs) binding.column = true
       return binding
     },
-    ...mapGetters(['product'])
+    ...mapGetters(['product', 'themeMode'])
   },
   methods: {
     addBookmark () {
@@ -129,4 +135,7 @@ export default {
 
 .container
   padding 6px !important
+
+.buy-btn
+  margin-top -5px;
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <v-card-text>
+  <v-card-text @keyup.enter='logIn'>
     <p class="text-xs-center">
       Login: test
       <br>
@@ -17,9 +17,6 @@
         v-model="pass"
         :rules="passRules"
         required
-        :append-icon="e1 ? 'visibility' : 'visibility_off'"
-        :append-icon-cb="() => (e1 = !e1)"
-        :type="e1 ? 'password' : 'text'"
       ></v-text-field>
     </v-form>
     <v-layout>
@@ -37,7 +34,6 @@ export default {
     valid: true,
     name: '',
     pass: '',
-    e1: true,
     nameRules: [
       v => !!v || 'Введите логин',
       v => (v && v.length >= 4)
@@ -48,7 +44,7 @@ export default {
   }),
   methods: {
     logIn () {
-      if (this.$refs.form.validate()) {
+      if (this.$refs.form.validate() && this.name === 'test' && this.pass === 'test') {
         this.$store.dispatch('logIn', {
           name: this.name,
           pass: this.pass

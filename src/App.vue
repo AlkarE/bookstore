@@ -1,5 +1,5 @@
 <template>
-  <v-app id="app" :class="themeMode" v-cloak app>
+  <v-app v-cloak :class="themeMode" app>
     <!-- Header / navigation component is here -->
     <AppHeader />
     <NotificationPanel />
@@ -34,7 +34,6 @@ export default {
 </script>
 
 <style src='./assets/style.styl' lang='styl'></style>
-
 <style>
 [v-cloak] {
   display:none;

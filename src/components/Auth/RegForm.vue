@@ -1,5 +1,5 @@
 <template>
-  <v-card-text>
+  <v-card-text @keyup.enter='submit'>
     <v-form v-model="valid" ref="form" lazy-validation>
       <v-text-field
         label="Name"
@@ -18,9 +18,6 @@
         v-model="pass"
         :rules="passRules"
         required
-        :append-icon="e1 ? 'visibility' : 'visibility_off'"
-        :append-icon-cb="() => (e1 = !e1)"
-        :type="e1 ? 'password' : 'text'"
       ></v-text-field>
       <v-layout>
         <v-btn
@@ -39,7 +36,6 @@ export default {
   name: 'RegForm',
   data: () => ({
     valid: true,
-    e1: true,
     name: '',
     nameRules: [
       v => !!v || 'Name is required',

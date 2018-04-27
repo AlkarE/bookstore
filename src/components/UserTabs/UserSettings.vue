@@ -8,9 +8,6 @@
         <v-text-field
           label="Password"
           v-model="pass"
-          :append-icon="e1 ? 'visibility' : 'visibility_off'"
-          :append-icon-cb="() => (e1 = !e1)"
-          :type="e1 ? 'password' : 'text'"
         ></v-text-field>
       </v-flex>
     </v-layout>
@@ -30,8 +27,7 @@
 <script>
 export default {
   data: () => ({
-    pass: 'test',
-    e1: true
+    pass: 'test'
   })
 }
 </script>
