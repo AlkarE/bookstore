@@ -1,13 +1,14 @@
 import router from '../router'
 import axios from 'axios'
 
-// const DATA_URL = `http://159.65.201.166:3000/`
-const DATA_URL = `http://localhost:3000/`
+const DATA_URL = `http://159.65.201.166:3228/books/`
+// const DATA_URL = `http://localhost:3228/books/`
 
 export const fetchBookData = async ({state, commit}) => {
   try {
     const res = await axios.get(DATA_URL)
-    const data = res.data
+    const data = res.data.books
+    // console.log(data) // expect 34 objects in array [{}]
     state.fetchedData = await Array.from(data)
     await commit('updateScrollData', data)
     await commit('makeCart')
@@ -19,10 +20,9 @@ export const fetchBookData = async ({state, commit}) => {
 
 export const fetchDirectBook = async ({state}, id) => {
   try {
-    const res = await axios.get(DATA_URL)
+    const res = await axios.get(`${DATA_URL}${id}`)
     const data = res.data
-    const bookArr = await Array.from(data)
-    state.product = await bookArr.find(book => book.id === +id)
+    state.product = data
   } catch (err) {
     global.console.log(err)
     throw new Error(err)
@@ -36,7 +36,7 @@ export const changeLayout = ({commit}) => {
 }
 
 export const getProductId = async ({state, commit}, id) => {
-  state.product = await null
+  state.product = null
   state.product = await state.fetchedData.filter(book => {
     return book.id === id
   })

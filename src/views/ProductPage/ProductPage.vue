@@ -1,7 +1,8 @@
 <template>
   <v-container fluid class="app-container">
     <BackBtn />
-    <div v-if="!product">loading...</div>
+    <div v-if="!product" style="text-align:center">loading...</div>
+
     <transition name="fade" appear v-else>
       <v-layout justify-center>
         <v-flex xs2 class="hidden-sm-and-down">
@@ -97,7 +98,7 @@ export default {
   },
   beforeMount () {
     if (!this.product) {
-      if (/^\d+$/.test(this.$route.params.id)) {
+      if (/^\d+$/.test(Number(this.$route.params.id))) {
         this.$store.dispatch('fetchDirectBook', this.$route.params.id)
       } else return null
     }
@@ -137,5 +138,5 @@ export default {
   padding 6px !important
 
 .buy-btn
-  margin-top -5px;
+  margin-top -5px
 </style>

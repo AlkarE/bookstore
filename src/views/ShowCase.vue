@@ -3,7 +3,7 @@
     <v-flex class="hidden-md-and-up" id="listener-top">
       <AdsView />
     </v-flex>
-    <TopPanel/>
+    <TopPanel />
     <v-layout id="listener-bot">
       <v-flex sm12 md10 class="mb-3 py-3">
         <transition name="fade" appear>

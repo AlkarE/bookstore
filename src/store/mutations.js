@@ -22,6 +22,7 @@ export const changeLayout = (state, payload = undefined) => {
   }
 }
 
+// Infinite scroll update function
 export const updateScrollData = state => {
   if (state.bookData.length < state.fetchedData.length) {
     const append = state.fetchedData.slice(state.bookData.length, state.bookData.length + LOAD_BOOKS)
@@ -59,7 +60,12 @@ export const priceSort = async (state, payload) => {
 export const makeCart = async (state) => {
   /*
     Из массива fetchedData делаем объект вида
-    cart = { index : { "book": book[index], "quantity": 0 } }
+    cart = {
+      index : {
+        'book': book[index],
+        'quantity': 0
+      }
+    }
   */
   await (() => {
     return state.fetchedData.forEach((val, _) => {
@@ -138,6 +144,5 @@ export const showNotification = (state, {text, color}) => {
     state.snackbar.status = false
     state.snackbar.text = ''
     state.snackbar.color = ''
-    global.console.clear()
   }, 1600)
 }

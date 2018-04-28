@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import ShowCase from './views/ShowCase'
+
 const ProductPage = () => import('./views/ProductPage/ProductPage.vue')
 const UserProfile = () => import('./views/User/UserProfile.vue')
 const PurchasePage = () => import('./views/PurchasePage/PurchasePage.vue')
@@ -29,7 +30,7 @@ export default new Router({
       name: 'ProductPage',
       component: ProductPage,
       beforeEnter (to, from, next) {
-        if (/^\d+$/.test(to.params.id)) {
+        if (/^\d+$/.test(Number(to.params.id))) {
           next()
         } else {
           next({
@@ -42,17 +43,7 @@ export default new Router({
     {
       path: '/user/:id',
       name: 'UserProfile',
-      component: UserProfile,
-      beforeEnter (to, from, next) {
-        if (/^\d+$/.test(to.params.id)) {
-          next()
-        } else {
-          next({
-            path: '/404',
-            query: { redirect: to.fullPath }
-          })
-        }
-      }
+      component: UserProfile
     },
     {
       path: '/user/:id/purchase',

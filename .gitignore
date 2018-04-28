@@ -2,6 +2,8 @@
 node_modules
 /dist
 /cool-build
+/backend/node_modules
+/backend/src/config
 
 # local env files
 .env.local

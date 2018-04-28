@@ -5,7 +5,7 @@
         name="search-input"
         label="Search..."
         id="testing"
-        v-model.lazy="search"
+        v-model.lazy.trim="search"
         @keyup.enter="searchIt"
       ></v-text-field>
       <div class="input-btn" @click='searchIt' title="Искать"></div>
@@ -37,10 +37,17 @@ export default {
   methods: {
     searchIt () {
       if (!this.search) return
+      const searchResult = []
 
-      const searchResult = this.$store.getters.fetchedData.filter(book => {
-        return book.Bookname.toLowerCase() === this.search.toLowerCase()
+      const filtered = () => this.$store.getters.fetchedData.filter(book => {
+        return book.Bookname.split(' ').filter(element => {
+          if (element.toLowerCase() === this.search.toLowerCase()) {
+            searchResult.push(book)
+          }
+        })
       })
+      filtered()
+
       this.$store.commit('showSearch', searchResult)
       this.$store.commit('changeLayout', true)
     },

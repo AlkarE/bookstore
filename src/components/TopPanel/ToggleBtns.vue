@@ -55,7 +55,7 @@
       </v-btn>
       <v-dialog v-model="dialog" :max-width='380' v-if="dialog">
         <v-card>
-          <component :is="com" @reg='reg' @close="close"></component>
+          <component :is="com" @reg='reg' @close="close" class="dialog-bounce"></component>
           <v-card-actions>
             <v-btn color="primary" flat @click.stop="close">Close</v-btn>
           </v-card-actions>
@@ -135,5 +135,16 @@ export default {
 .profile_img {
   max-width: 36px;
   height: auto;
+}
+
+.dialog-bounce {
+  animation: bounce .6s;
+}
+
+@keyframes bounce {
+  0% { transform: translateY(-1000px) }
+  50% { transform: translateY(40px) }
+  75% { transform: translateY(-50px) }
+  100% { transform: translateY(0) }
 }
 </style>

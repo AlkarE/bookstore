@@ -5,7 +5,7 @@
         <v-flex xs10 offset-xs1>
           <p>Рекомендуем ознакомиться:</p>
         </v-flex>
-        <v-flex md3 class="ma-2" v-for="book in recBooks" :key="book.id">
+        <v-flex md3 class="ma-2 rec-up" v-for="book in recBooks" :key="book.id">
           <v-card class="pa-2 text-xs-center">
             <img class="rec-image" :src="require(`@/assets/${book.src}`)">
             <p class="tit">{{book.Bookname}}</p>
@@ -34,8 +34,8 @@ export default {
   data: () => ({
     books: []
   }),
-  beforeMount () {
-    this.getRndBooks()
+  mounted () {
+    setTimeout(this.getRndBooks, 900)
   },
   computed: {
     recBooks () {
@@ -106,5 +106,16 @@ export default {
   width: 100%;
   height: auto;
   max-width: 140px;
+}
+
+.rec-up {
+  animation: up .6s;
+}
+
+@keyframes up {
+  0% { transform: translateY(3000px) }
+  50% { transform: translateY(-40px) }
+  75% { transform: translateY(50px) }
+  100% { transform: translateY(0) }
 }
 </style>
