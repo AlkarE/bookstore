@@ -2,7 +2,7 @@
   <v-container fluid grid-list-xl>
     <v-layout wrap>
       <v-flex xs12 sm6 md3 v-for="book in bookData" :key="book.Bookname">
-        <v-card class="pa-2 text-xs-center">
+        <v-card class="text-xs-center">
           <LazyImage :src="require(`@/assets/${book.src}`)" :alt="book.Bookname" />
           <p
             :class="themeMode === 'theme--dark' ? 'tit' : 'tit-dark'"

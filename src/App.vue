@@ -1,6 +1,5 @@
 <template>
   <v-app v-cloak :class="themeMode" app>
-    <!-- Header / navigation component is here -->
     <AppHeader />
     <NotificationPanel />
 

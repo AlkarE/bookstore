@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <div>
     <div v-if="searchStatus">
       <SearchPanel />
     </div>
@@ -63,7 +63,7 @@
       </v-dialog>
       <CartPre/>
     </v-layout>
-  </section>
+  </div>
 </template>
 
 <script>

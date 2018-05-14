@@ -56,9 +56,9 @@ export default {
   },
   methods: {
     goIndex () {
-      const a = () => this.$store.state.search ? this.$store.commit('changeLayout') : false
+      const hasSearch = () => this.$store.state.search ? this.$store.commit('changeLayout') : false
       this.$router.push({ path: '/' })
-      a()
+      hasSearch()
       this.$store.commit('hideSearchResults')
     }
   }

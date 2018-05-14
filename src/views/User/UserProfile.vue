@@ -18,9 +18,9 @@
                 <v-layout class="hidden-sm-and-up">
                   <img src="../../assets/icons/ac-no-ava_d.svg" class="profile_img--small">
                   <v-flex>
-                    <p class="text-xs-center headline">{{this.$store.getters.userName}}</p>
+                    <p class="headline">{{this.$store.getters.userName}}</p>
                   </v-flex>
-                  <v-flex offset-xs10>
+                  <v-flex offset-xs12>
                     <v-btn @click="logOut" small>Выйти</v-btn>
                   </v-flex>
                 </v-layout>
@@ -83,7 +83,7 @@ export default {
 
 <style lang='stylus' scoped>
 .profile_img
-  max-width 200px
+  max-width 150px
   height auto
   &--small
     max-width 50px

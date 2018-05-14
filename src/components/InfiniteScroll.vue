@@ -1,5 +1,5 @@
 <template>
-  <div class="loading-cont-svg" v-show="scrollDataStatus"></div>
+  <div class="loading-content" v-show="scrollDataStatus"></div>
 </template>
 
 <script>
@@ -21,7 +21,7 @@ export default {
   },
   mounted () {
     setTimeout(() => {
-      const elem = document.querySelector('.loading-cont-svg')
+      const elem = document.querySelector('.loading-content')
       const watcher = scrollMonitor.create(elem)
       const vm = this
       watcher.enterViewport(() => {
@@ -33,7 +33,7 @@ export default {
 </script>
 
 <style scoped>
-.loading-cont-svg {
+.loading-content {
   display: block;
   position: absolute;
   bottom: 40px;

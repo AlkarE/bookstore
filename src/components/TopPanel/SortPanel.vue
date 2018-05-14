@@ -1,5 +1,5 @@
 <template>
-  <section class="ml-3">
+  <div class="ml-3">
     <v-select
       :items="priceSort"
       v-model="sel"
@@ -7,7 +7,7 @@
       single-line
       append-icon=''
     ></v-select>
-  </section>
+  </div>
 </template>
 
 <script>

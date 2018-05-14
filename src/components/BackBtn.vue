@@ -1,6 +1,6 @@
 <template>
   <img
-    class="back-btn--svg"
+    class="back-btn"
     :src='themeMode === `theme--dark`
       ? require("../assets/icons/back_l.svg")
       : require("../assets/icons/back_d.svg")'
@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style scoped>
-.back-btn--svg {
+.back-btn {
   position: fixed;
   left: 5px;
   top: 90px;

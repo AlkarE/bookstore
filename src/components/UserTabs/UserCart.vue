@@ -21,9 +21,13 @@
           <b>{{book.book.price}} руб.</b>
         </v-list-tile>
       </template>
-      <v-layout justify-center>
+      <v-layout justify-center class="hidden-xs-only">
         <span>Выбрано книг на сумму {{allPrice}} руб.</span>
         <v-spacer></v-spacer>
+        <v-btn @click='goPurchase'>Оформить заказ</v-btn>
+      </v-layout>
+      <v-layout justify-center column class="hidden-sm-and-up mt-2">
+        <p>Выбрано книг на сумму {{allPrice}} руб.</p>
         <v-btn @click='goPurchase'>Оформить заказ</v-btn>
       </v-layout>
     </v-list>

@@ -1,5 +1,6 @@
 <template>
-  <v-card-media :src='lazySrc' :height='320' :contain='true' ></v-card-media>
+  <!-- <v-card-media :src='lazySrc' :height='320' :alt='this.alt'></v-card-media> -->
+  <img :src='lazySrc' :alt='this.alt' class="lazy-img">
 </template>
 
 <script>
@@ -37,3 +38,10 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus" scoped>
+.lazy-img
+  width 100%
+  height auto
+  max-height 390px
+</style>
