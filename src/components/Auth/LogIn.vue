@@ -44,13 +44,11 @@ export default {
   }),
   methods: {
     logIn () {
-      if (this.$refs.form.validate() && this.name === 'test' && this.pass === 'test') {
-        this.$store.dispatch('logIn', {
-          name: this.name,
-          pass: this.pass
-        })
-        this.$emit('close', false)
-      }
+      this.$store.dispatch('logIn', {
+        name: this.name,
+        pass: this.pass
+      })
+      this.$emit('close', false)
     },
     reg () {
       this.$emit('reg')
