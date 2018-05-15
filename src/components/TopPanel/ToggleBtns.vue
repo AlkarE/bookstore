@@ -120,6 +120,7 @@ export default {
     close () {
       // this.$refs.form.reset()
       this.dialog = false
+      this.com = 'log-in'
     },
     reg () {
       this.com = 'reg-form'
