@@ -53,8 +53,6 @@ export const priceSort = async (state, payload) => {
       })
     }
   })()
-  await clearScrollData()
-  await updateScrollData()
 }
 
 export const makeCart = async (state) => {

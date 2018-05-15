@@ -14,17 +14,19 @@
 export default {
   name: 'SortPanel',
   data: () => ({
-    // тут сортировка по цене + нужно по жанрам ?
+    // тут сортировка по цене
     priceSort: ['Цена: по убыванию', 'Цена: по возрастанию'],
     sel: ''
   }),
   watch: {
-    sel (newVal) {
+    async sel (newVal) {
       if (newVal === this.priceSort[0]) {
         this.$store.commit('priceSort')
       } else {
         this.$store.commit('priceSort', 'payload')
       }
+      await this.$store.commit('clearScrollData')
+      await this.$store.commit('updateScrollData')
     }
   }
 }
