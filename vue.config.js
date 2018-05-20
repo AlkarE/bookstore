@@ -19,7 +19,8 @@ module.exports = {
         path: path.join(__dirname, '/cool-build'),
         filename: 'js/bookstore/[name].js',
         chunkFilename: 'js/bookstore/[name].[chunkhash].js'
-      }
+      },
+      devtool: 'none'
     }
   }
 }

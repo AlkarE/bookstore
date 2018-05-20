@@ -1,7 +1,7 @@
 <template>
-  <v-container fluid grid-list-xl>
+  <v-container fluid :class='binding'>
     <v-layout wrap>
-      <v-flex xs12 sm6 md3 v-for="book in bookData" :key="book.Bookname">
+      <v-flex xs12 sm4 md3 v-for="book in bookData" :key="book.Bookname" class="mb-2">
         <v-card class="text-xs-center">
           <LazyImage :src="require(`@/assets/${book.src}`)" :alt="book.Bookname" />
           <p
@@ -36,6 +36,9 @@ export default {
     LazyImage
   },
   computed: {
+    binding () {
+      return this.$vuetify.breakpoint.xs ? null : 'grid-list-lg'
+    },
     ...mapGetters(['bookData', 'themeMode'])
   },
   methods: {

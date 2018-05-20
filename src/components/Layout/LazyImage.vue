@@ -43,5 +43,6 @@ export default {
 .lazy-img
   width 100%
   height auto
+  max-width 317px
   max-height 390px
 </style>
