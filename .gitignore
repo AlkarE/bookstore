@@ -4,6 +4,7 @@ node_modules
 /cool-build
 /server/node_modules
 /server/src/config
+/build
 
 # local env files
 .env.local

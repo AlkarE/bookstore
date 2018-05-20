@@ -51,11 +51,11 @@ export const logIn = ({state, commit}, {name, pass}) => {
     state.userLogged = true
     state.uid = 1
     state.userName = name
-    commit('showNotification', {
-      text: `Вы вошли как ${state.userName}`,
-      color: 'success'
-    })
   }
+  commit('showNotification', {
+    text: `Вы вошли как ${state.userName}`,
+    color: 'success'
+  })
 }
 
 export const signUp = ({state}, {name, email, pass}) => {
