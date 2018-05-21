@@ -1,14 +1,15 @@
 <template>
   <v-app v-cloak :class="themeMode" app>
-    <AppHeader />
+    <AppHeader v-once />
     <NotificationPanel />
 
     <v-content class="mt-3" app id="content">
-      <router-view/>
+      <transition name='fade' appear>
+        <router-view/>
+      </transition>
     </v-content>
 
     <ScrollUp />
-    <!-- Возможно тут должен быть футер -->
   </v-app>
 </template>
 

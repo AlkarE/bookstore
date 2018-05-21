@@ -1,5 +1,4 @@
 <template>
-  <!-- <v-card-media :src='lazySrc' :height='320' :alt='this.alt'></v-card-media> -->
   <img :src='lazySrc' :alt='this.alt' class="lazy-img">
 </template>
 
@@ -20,7 +19,7 @@ export default {
   }),
   computed: {
     lazySrc () {
-      return this.intersected ? this.src : ''
+      return this.intersected ? this.src : require('../../assets/icons/spinning-circles.svg')
     }
   },
   mounted () {
@@ -44,4 +43,5 @@ export default {
   width 100%
   height auto
   max-height 390px
+  max-width 320px
 </style>

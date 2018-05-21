@@ -5,7 +5,7 @@
       absolute
       v-model="drawer"
     >
-      <v-list class="mt-5">
+      <v-list>
          <v-list-tile
           v-for="obj in navLinks"
           :href='obj.link'
