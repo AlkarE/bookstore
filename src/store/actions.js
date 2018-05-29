@@ -47,7 +47,7 @@ export const getProductId = async ({state, commit}, id) => {
 
 export const logIn = ({state, commit}, {name, pass}) => {
   // global.console.log(`name = ${name}, pass = ${pass}`)
-  if (name.trim() === /test/i && pass === /test/i) {
+  if (/test/i.test(name.trim()) && /test/i.test(pass)) {
     state.userLogged = true
     state.uid = 1
     state.userName = name

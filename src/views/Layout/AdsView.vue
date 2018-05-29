@@ -3,12 +3,12 @@
   <v-container fluid class="re_ad">
     <v-layout v-bind="binding" justify-center>
       <v-flex class="ma-1" @click='goAds("ticket")' @click.middle='goAds("ticket")'>
-        <v-card class="cur pa-1" title="Перейти по ссылке">
-          <p align='center' class="re_ad--title">ads is here!</p>
+        <v-card class="cur pa-1 elevation-1" title="Перейти по ссылке">
+          <p align='center' class="re_ad--title">Fake ads</p>
           <v-card-media
             src='http://img10.lostpic.net/2017/09/21/b3980a41d38a60bfe0d0b9e6fa62e3b8.png'
             contain
-            height=128
+            height=100
           ></v-card-media>
           <v-card-text class="text-xs-center mb-0">
             Покупайте билеты на поезда тольуо у НАС!
@@ -19,7 +19,7 @@
       </v-flex>
 
       <v-flex class="ma-1" @click='goAds("quiz")' @click.middle='goAds("quiz")'>
-        <v-card class="cur" title="Перейти по ссылке">
+        <v-card class="cur elevation-1" title="Перейти по ссылке">
           <p align='center' class="re_ad--title mb-1">Проверьте Ваши знания!</p>
           <v-card-media
             src='http://img10.lostpic.net/2017/09/21/240c79cd7c9f762c715b9b99fd73bcc4.jpg'

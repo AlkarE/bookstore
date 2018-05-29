@@ -10,7 +10,7 @@
             <v-flex xs12 sm10 class="list_view-top">
               <div>
                 <div
-                  :class="themeMode === 'theme--dark' ? 'tit headline' : 'tit-dark headline'"
+                  :class="themeMode === 'theme--dark' ? 'titl headline' : 'titl--dark headline'"
                 >
                   {{book.Bookname}}
                 </div>

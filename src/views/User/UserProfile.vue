@@ -28,7 +28,7 @@
               <v-flex xs12 sm9>
                 <v-tabs :scrollable='false' fixed-tabs slider-color="indigo" v-model="tab">
                   <v-tab v-for="a in tabs" :key='a'>
-                    <span>{{a}}</span>
+                    <span class="tab__title">{{a}}</span>
                   </v-tab>
                 </v-tabs>
                 <transition name="fade">
@@ -88,4 +88,10 @@ export default {
   &--small
     max-width 50px
     max-height 50px
+
+.tab__title
+  font-size 12px !important
+
+  @media screen and (max-width: 600px)
+    font-size 10px !important
 </style>

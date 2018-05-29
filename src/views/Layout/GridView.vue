@@ -5,7 +5,7 @@
         <v-card class="text-xs-center">
           <LazyImage :src="require(`@/assets/${book.src}`)" :alt="book.Bookname" />
           <p
-            :class="themeMode === 'theme--dark' ? 'tit' : 'tit-dark'"
+            :class="themeMode === 'theme--dark' ? 'titl' : 'titl--dark'"
             :title='book.author'>{{book.Bookname}}
           </p>
           <v-layout class="pa-2">

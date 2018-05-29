@@ -118,7 +118,6 @@ export default {
       this.$router.push(`/user/${this.uid}`)
     },
     close () {
-      // this.$refs.form.reset()
       this.dialog = false
       this.com = 'log-in'
     },

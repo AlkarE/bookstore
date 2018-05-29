@@ -11,10 +11,10 @@
         <v-flex xs10 class="mb-3 py-3">
           <v-card>
             <v-layout class="pa-2" v-bind='binding'>
-              <div class="mob-poster-div" v-if="mobilePoster">
+              <div class="mobile-poster" v-if="mobilePoster">
                 <img
                   :src='require(`../../assets/${product.src}`)'
-                  class="mobile-poster"
+                  class="mobile-poster--img"
                 >
               </div>
               <v-flex sm3>
@@ -26,7 +26,7 @@
                 ></v-card-media>
               </v-flex>
               <v-flex sm8 class="list_view-top">
-                <p class="headline tit-dark">{{product.Bookname}}</p>
+                <p class="headline titl--dark">{{product.Bookname}}</p>
                 <p>{{product.author}}</p>
                 <p>{{product.Description}}</p>
                 <v-layout wrap class="list_view-bot">
@@ -50,7 +50,7 @@
                       v-cloak
                       inline-template
                     >
-                      <v-layout class="cur" justify-space-between>
+                      <v-layout class="cur socials" wrap justify-space-between>
                         <network network="facebook" id="facebook" class="pr-1">
                           Facebook
                         </network>
@@ -126,10 +126,10 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.mob-poster-div
+.mobile-poster
   text-align center
 
-.mobile-poster
+.mobile-poster--img
   width 100%
   height auto
   max-width 200px

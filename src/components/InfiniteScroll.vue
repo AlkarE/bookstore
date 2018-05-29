@@ -27,7 +27,7 @@ export default {
       watcher.enterViewport(() => {
         vm.updateData()
       })
-    }, 1000)
+    }, 600)
   }
 }
 </script>
