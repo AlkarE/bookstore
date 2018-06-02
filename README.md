@@ -1,5 +1,9 @@
-# bookstore
+# Demo Bookstore site
 
-demo book store site made with vuetify material design framework, vue, vuex, vue-router
+####Demo bookstore site made with:
+**front-end**: vuetify material design framework, vue, vuex, vue-router.
+Used lazy-loading images and code splitting(lazy-loading routes and components) to improve the performance.
 
-demo is here: [df000.ru/project/bookstore/](http://df000.ru/project/bookstore/)
+**back-end**: express, mongoDb(mLab).
+
+Demo is here: [df000.ru/project/bookstore/](http://df000.ru/project/bookstore/)

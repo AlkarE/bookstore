@@ -68,10 +68,11 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import LogIn from '@/components/Auth/LogIn'
-import RegForm from '@/components/Auth/RegForm'
 import SearchPanel from '../../components/TopPanel/SearchPanel'
 import CartPre from '../../components/TopPanel/CartPre'
+
+const LogIn = () => import(/* webpackChunkName: "authDialogs" */ '@/components/Auth/LogIn')
+const RegForm = () => import(/* webpackChunkName: "authDialogs" */ '@/components/Auth/RegForm')
 
 const closeSearchPanelListener = function (vm) {
   const contentTop = document.getElementById('listener-top')

@@ -5,7 +5,9 @@
 <script>
 import { mapState } from 'vuex'
 import scrollMonitor from 'scrollmonitor'
-/* eslint-disable */
+
+let elem = null
+let watcher = null
 
 export default {
   name: 'InfiniteScroll',
@@ -14,20 +16,23 @@ export default {
   },
   methods: {
     updateData () {
-      setTimeout(() => {
-        this.$store.commit('updateScrollData')
-      }, 300)
+      this.$store.commit('updateScrollData')
     }
   },
   mounted () {
+    elem = document.querySelector('.loading-content')
+    watcher = scrollMonitor.create(elem)
     setTimeout(() => {
-      const elem = document.querySelector('.loading-content')
-      const watcher = scrollMonitor.create(elem)
       const vm = this
       watcher.enterViewport(() => {
         vm.updateData()
       })
-    }, 600)
+    }, 300)
+  },
+  beforeDestroy () {
+    watcher.destroy()
+    elem = null
+    watcher = null
   }
 }
 </script>

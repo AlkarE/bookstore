@@ -2,7 +2,7 @@
   <div class="ml-3">
     <v-select
       :items="priceSort"
-      v-model="sel"
+      v-model="sortBy"
       label="Сортировать:"
       single-line
       append-icon=''
@@ -16,10 +16,10 @@ export default {
   data: () => ({
     // тут сортировка по цене
     priceSort: ['Цена: по убыванию', 'Цена: по возрастанию'],
-    sel: ''
+    sortBy: ''
   }),
   watch: {
-    async sel (newVal) {
+    async sortBy (newVal) {
       if (newVal === this.priceSort[0]) {
         this.$store.commit('priceSort')
       } else {
