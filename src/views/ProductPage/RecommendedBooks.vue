@@ -1,23 +1,21 @@
 <template>
-  <v-layout :class="binding" justify-center align-center>
-    <v-flex xs10>
-      <v-layout justify-center :class="binding === true ? '' : 'wrap'">
-        <v-flex xs10 offset-xs1>
+  <v-layout justify-center>
+    <v-flex xs10 offset-xs0 offset-sm2>
+      <v-layout wrap :class="binding">
+        <v-flex xs12 class="ml-2">
           <p>Рекомендуем ознакомиться:</p>
         </v-flex>
         <v-flex md3 class="ma-2 rec-up" v-for="book in recBooks" :key="book.id">
-          <v-card class="pa-2 text-xs-center">
+          <v-card class="text-xs-center">
             <img class="rec-image" :src="require(`@/assets/${book.src}`)">
             <p class="titl">{{book.Bookname}}</p>
-            <v-layout class="px-2">
+            <v-layout>
               <v-btn icon alt="Подробнее" title="Подробнее" @click='goToRecBook(book.id)'>
                 <img v-if='themeMode === `theme--dark`' src="data:image/svg+xml,%3Csvg fill='%23FFFFFF' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z'/%3E%3C/svg%3E" alt="description">
-              <img v-else src="data:image/svg+xml,%3Csvg fill='%23000000' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z'/%3E%3C/svg%3E" alt="description">
+                <img v-else src="data:image/svg+xml,%3Csvg fill='%23000000' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z'/%3E%3C/svg%3E" alt="description">
               </v-btn>
               <v-spacer></v-spacer>
-              <span class="mt-3">{{book.price}} руб.</span>
-              <v-spacer></v-spacer>
-              <v-flex></v-flex>
+              <span class="mt-3 mr-2">{{book.price}} руб.</span>
             </v-layout>
           </v-card>
         </v-flex>
@@ -28,24 +26,23 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import viewportListener from '@/mixins/viewportListener'
 
 export default {
   name: 'RecommendedBooks',
   data: () => ({
-    books: []
+    books: [],
+    listener: 'justify-center'
   }),
-  mounted () {
-    setTimeout(this.getRndBooks, 900)
-  },
+  mixins: [viewportListener],
   computed: {
     recBooks () {
       return this.books
     },
-    binding () {
-      const cssClass = this.$vuetify.breakpoint.mdAndUp ? 'justify-end' : 'justify-start'
-      return cssClass
-    },
     ...mapGetters(['fetchedData', 'themeMode'])
+  },
+  mounted () {
+    setTimeout(this.getRndBooks, 900)
   },
   methods: {
     goToRecBook (id) {
@@ -105,15 +102,18 @@ export default {
 .rec-image {
   width: 100%;
   height: auto;
-  max-width: 140px;
+  max-width: 180px;
 }
 
 .rec-up {
-  animation: up .6s;
+  flex-grow: 0;
+  flex-shrink: 0;
+  max-width: 190px;
+  animation: up .6s ease-in;
 }
 
 @keyframes up {
-  0% { transform: translateY(3000px) }
+  0% { transform: translateY(2000px) }
   50% { transform: translateY(-40px) }
   75% { transform: translateY(50px) }
   100% { transform: translateY(0) }

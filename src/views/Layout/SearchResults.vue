@@ -44,18 +44,18 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import BuyBtn from '../../components/Layout/BuyBtn'
+import viewportListener from '@/mixins/viewportListener'
 
 export default {
   name: 'search-results',
   components: {
     BuyBtn
   },
+  data: () => ({
+    listener: 'wrap'
+  }),
+  mixins: [viewportListener],
   computed: {
-    binding () {
-      const binding = {}
-      if (this.$vuetify.breakpoint.xs) binding.wrap = true
-      return binding
-    },
     ...mapGetters(['bookData', 'themeMode'])
   },
   methods: {

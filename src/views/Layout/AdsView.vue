@@ -70,7 +70,7 @@ export default {
 }
 
 .re_ad--title {
-  font-size: 2.5vh;
+  font-size: 1.5rem;
   font-weight: 400;
 }
 

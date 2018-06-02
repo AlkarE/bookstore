@@ -87,6 +87,7 @@ import RecBooks from './RecommendedBooks.vue'
 import BackBtn from '@/components/BackBtn'
 import { mapGetters } from 'vuex'
 import BuyBtn from '@/components/Layout/BuyBtn'
+import viewportListener from '@/mixins/viewportListener'
 
 export default {
   name: 'ProductPage',
@@ -96,6 +97,10 @@ export default {
     BackBtn,
     BuyBtn
   },
+  data: () => ({
+    listener: 'column'
+  }),
+  mixins: [viewportListener],
   beforeMount () {
     if (!this.product) {
       if (/^\d+$/.test(Number(this.$route.params.id))) {
@@ -109,11 +114,6 @@ export default {
     },
     mobilePoster () {
       return this.$vuetify.breakpoint.xs
-    },
-    binding () {
-      const binding = {}
-      if (this.$vuetify.breakpoint.xs) binding.column = true
-      return binding
     },
     ...mapGetters(['product', 'themeMode'])
   },

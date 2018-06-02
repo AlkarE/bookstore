@@ -4,7 +4,7 @@
       <v-flex xs12 v-for="book in bookData" :key="book.Bookname">
         <v-card class="my-2">
           <v-layout v-bind='binding'>
-            <v-flex xs12 sm2>
+            <v-flex xs12 sm2 class="list_view__img-center">
               <LazyImage :src="require(`@/assets/${book.src}`)" :alt="book.Bookname" />
             </v-flex>
             <v-flex xs12 sm10 class="list_view-top">
@@ -40,6 +40,7 @@
 import { mapGetters, mapActions } from 'vuex'
 import BuyBtn from '../../components/Layout/BuyBtn'
 import LazyImage from '../../components/Layout/LazyImage'
+import viewportListener from '@/mixins/viewportListener'
 
 export default {
   name: 'ListView',
@@ -47,12 +48,11 @@ export default {
     BuyBtn,
     LazyImage
   },
+  data: () => ({
+    listener: 'wrap'
+  }),
+  mixins: [viewportListener],
   computed: {
-    binding () {
-      const binding = {}
-      if (this.$vuetify.breakpoint.xs) binding.wrap = true
-      return binding
-    },
     ...mapGetters(['bookData', 'themeMode'])
   },
   methods: {
@@ -60,3 +60,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.list_view__img-center {
+  text-align: center;
+}
+</style>
