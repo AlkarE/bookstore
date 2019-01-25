@@ -3,23 +3,27 @@ import Vue from 'vue'
 const LOAD_BOOKS = 8
 
 export const changeTheme = state => {
-  if (state.themeMode === 'theme--dark') {
-    state.themeMode = 'theme--light'
-  } else {
-    state.themeMode = 'theme--dark'
-  }
+  state.themeMode === 'theme--dark' ? state.themeMode = 'theme--light' : state.themeMode = 'theme--dark'
 }
 
+// export const changeLayout = (state, payload = undefined) => {
+//   if (payload) {
+//     state.layout = 'search-results'
+//   } else {
+//     if (state.layout === 'grid-view') {
+//       state.layout = 'list-view'
+//     } else {
+//       state.layout = 'grid-view'
+//     }
+//   }
+// }
+
 export const changeLayout = (state, payload = undefined) => {
-  if (payload) {
-    state.layout = 'search-results'
-  } else {
-    if (state.layout === 'grid-view') {
-      state.layout = 'list-view'
-    } else {
-      state.layout = 'grid-view'
-    }
-  }
+  payload
+    ? state.layout = 'search-results'
+    : state.layout === 'grid-view'
+      ? state.layout = 'list-view'
+      : state.layout = 'grid-view'
 }
 
 // Infinite scroll update function
@@ -37,22 +41,14 @@ export const updateScrollData = state => {
   }
 }
 
-export const clearScrollData = state => {
-  state.bookData = []
-}
+export const clearScrollData = state => (state.bookData = [])
 
-export const priceSort = async (state, payload) => {
-  await (() => {
-    if (payload === 'payload') {
-      state.fetchedData = state.fetchedData.sort(function (a, b) {
-        return b.price - a.price
-      })
-    } else {
-      state.fetchedData = state.fetchedData.sort(function (a, b) {
-        return a.price - b.price
-      })
-    }
-  })()
+export const priceSort = (state, payload) => {
+  if (payload === 'payload') {
+    state.fetchedData = state.fetchedData.sort((a, b) => b.price - a.price)
+  } else {
+    state.fetchedData = state.fetchedData.sort((a, b) => a.price - b.price)
+  }
 }
 
 export const makeCart = async (state) => {
@@ -67,7 +63,7 @@ export const makeCart = async (state) => {
   */
   await (() => {
     return state.fetchedData.forEach((val, _) => {
-      Vue.set(state.cart, _, {'book': val})
+      Vue.set(state.cart, _, { 'book': val })
     })
   })()
   await (() => {
@@ -78,13 +74,11 @@ export const makeCart = async (state) => {
 }
 
 export const addToCart = (state, payload) => {
-  return (() => {
-    for (const i in state.cart) {
-      if (state.cart[i].book.Bookname === payload) {
-        state.cart[i].quantity++
-      }
+  for (const i in state.cart) {
+    if (state.cart[i].book.Bookname === payload) {
+      state.cart[i].quantity++
     }
-  })()
+  }
 }
 
 /*
@@ -119,9 +113,9 @@ export const hideSearchResults = state => {
   state.search = ''
 }
 
-export const addBookmark = async (state, product) => {
+export const addBookmark = (state, product) => {
   if (state.bookmarks.includes(product)) {
-    await showNotification(state, {
+    showNotification(state, {
       text: 'Уже в закладках',
       color: 'error'
     })
@@ -134,7 +128,7 @@ export const addBookmark = async (state, product) => {
   }
 }
 
-export const showNotification = (state, {text, color}) => {
+export const showNotification = (state, { text, color }) => {
   state.snackbar.status = true
   state.snackbar.color = color
   state.snackbar.text = text

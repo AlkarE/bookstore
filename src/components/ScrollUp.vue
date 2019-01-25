@@ -1,30 +1,28 @@
 <template>
   <img
     id="scrollup"
-    alt="Прокрутить вверх"
-    src="../assets/icons/up.svg"
     :class="scrollUpClass"
-    @mouseover='onMouseOver'
-    @mouseout='onMouseOut'
+    src="../assets/icons/up.svg"
+    alt="Прокрутить вверх"
     @click="goTop"
   />
 </template>
 
 <script>
+import { scrollListener } from '@/helpers.js'
+
 export default {
   name: 'scrollUp',
   data: () => ({
-    scrollUp: null,
     classActive: false
   }),
   mounted () {
-    this.scrollUp = document.getElementById('scrollup')
-    window.addEventListener('scroll', this.scrollListener)
+    window.addEventListener('scroll', scrollListener(this.scrollListener), { passive: true })
   },
   computed: {
     scrollUpClass () {
       return this.classActive ? 'active' : 'non-active'
-    }
+    },
   },
   methods: {
     goTop () {
@@ -34,27 +32,19 @@ export default {
         behavior: 'smooth'
       })
     },
-    onMouseOver () {
-      this.scrollUp.style.opacity = 0.99
-      this.scrollUp.style.filter = 'alpha(opacity=30)'
-    },
-    onMouseOut () {
-      this.scrollUp.style.opacity = 0.65
-      this.scrollUp.style.filter = `alpha(opacity=50)`
-    },
     scrollListener () {
-      if (window.pageYOffset > 0) {
+      if (window.scrollY > 90) {
         this.classActive = true
       } else this.classActive = false
     }
   },
   destroyed () {
-    window.removeEventListener('scroll', this.scrollListener)
+    window.removeEventListener('scroll', scrollListener)
   }
 }
 </script>
 
-<style scoped>
+<style lang="stylus" scoped>
 #scrollup {
   position: fixed;
   opacity: 0.65;
@@ -64,14 +54,23 @@ export default {
   cursor: pointer;
   z-index: 9999;
   max-width: 50px;
+  opacity: 0.65
+  transition opacity .3s easy-in
+  &:hover {
+    opacity: 1
+  }
 }
 
 .non-active {
-  display: none;
+  opacity 0
+  visibility hidden
+  pointer-events none
 }
 
 .active {
-  display: block;
+  opacity 1
+  visibility visible
+  pointer-events auto
 }
 
 @media only screen and (max-width: 570px){
