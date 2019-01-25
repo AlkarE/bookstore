@@ -4,35 +4,34 @@
 
 <script>
 import { mapState } from 'vuex'
-import scrollMonitor from 'scrollmonitor'
-
-let elem = null
-let watcher = null
+import { scrollListener } from '@/helpers.js'
 
 export default {
   name: 'InfiniteScroll',
   computed: {
     ...mapState(['scrollDataStatus'])
   },
+  mounted () {
+    window.addEventListener('scroll', scrollListener(this.scroll), { passive: true })
+  },
   methods: {
+    scroll () {
+      const bottomOfWindow = document.documentElement.scrollTop + window.innerHeight + 1 >= document.documentElement.offsetHeight
+
+      if (bottomOfWindow) {
+        this.updateData()
+      }
+    },
     updateData () {
-      this.$store.commit('updateScrollData')
+      try {
+        this.$store.commit('updateScrollData')
+      } catch (er) {
+        console.log(er)
+      }
     }
   },
-  mounted () {
-    elem = document.querySelector('.loading-content')
-    watcher = scrollMonitor.create(elem)
-    setTimeout(() => {
-      const vm = this
-      watcher.enterViewport(() => {
-        vm.updateData()
-      })
-    }, 300)
-  },
   beforeDestroy () {
-    watcher.destroy()
-    elem = null
-    watcher = null
+    window.removeEventListener('scroll', scrollListener)
   }
 }
 </script>

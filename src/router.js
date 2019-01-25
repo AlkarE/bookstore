@@ -2,11 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import ShowCase from './views/ShowCase'
 
-const ProductPage = () => import('./views/ProductPage/ProductPage.vue')
-const UserProfile = () => import('./views/User/UserProfile.vue')
-const PurchasePage = () => import('./views/PurchasePage/PurchasePage.vue')
-const Error404 = () => import('./views/Error404.vue')
-
 Vue.use(Router)
 
 export default new Router({
@@ -28,7 +23,7 @@ export default new Router({
     {
       path: '/book/:id',
       name: 'ProductPage',
-      component: ProductPage,
+      component: () => import('./views/ProductPage/ProductPage.vue'),
       beforeEnter (to, from, next) {
         if (/^\d+$/.test(Number(to.params.id))) {
           next()
@@ -43,16 +38,16 @@ export default new Router({
     {
       path: '/user/:id',
       name: 'UserProfile',
-      component: UserProfile
+      component: () => import('./views/User/UserProfile.vue')
     },
     {
       path: '/user/:id/purchase',
       name: 'PurchasePage',
-      component: PurchasePage
+      component: import('./views/PurchasePage/PurchasePage.vue')
     },
     {
       path: '/404',
-      component: Error404
+      component: import('./views/Error404.vue')
     },
     {
       path: '*',

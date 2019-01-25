@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "scrollmonitor": "^1.2.4",
     "vue": "^2.5.22",
     "vue-router": "^3.0.2",
     "vue-social-sharing": "^2.3.3",
