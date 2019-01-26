@@ -1,10 +1,4 @@
 const CompressionPlugin = require('compression-webpack-plugin')
-const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
-const path = require('path')
-
-const vlp = [
-  new VuetifyLoaderPlugin()
-]
 
 const cp = new CompressionPlugin({
   asset: '[path].gz[query]',
@@ -13,19 +7,18 @@ const cp = new CompressionPlugin({
   minRatio: 0.8
 })
 
-const plugins = (process.env.NODE_ENV !== 'production') ? vlp : [...vlp, cp]
+const plugins = (process.env.NODE_ENV === 'production') ? [] : [cp]
 
 module.exports = {
   lintOnSave: true,
+  productionSourceMap: false,
   configureWebpack: config => {
     if (process.env.NODE_ENV !== 'production') return
 
+    config.output.filename = 'js/bookstore/bookstore.js'
+    config.output.chunkFilename = 'js/bookstore/[name].[chunkhash].js'
     return {
       plugins,
-      output: {
-        filename: 'js/bookstore/[name].js',
-        chunkFilename: 'js/bookstore/[name].[chunkhash].js'
-      }
     }
   }
 }
