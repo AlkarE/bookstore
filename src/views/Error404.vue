@@ -13,18 +13,12 @@ export default {
   computed: {
     iframeWidth () {
       return window.innerWidth < 450 ? '320' : '560'
-    },
-    iframeHeight () {
-      return window.innerWidth < 450 ? '220' : '315'
     }
-  },
-  created () {
-    console.log(window.innerWidth)
   }
 }
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
 .error-page
   margin-top 40px
   padding 8px

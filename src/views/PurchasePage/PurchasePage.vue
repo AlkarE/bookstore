@@ -1,5 +1,5 @@
 <template>
-  <v-container class="app-container" justify-centerfluid>
+  <v-container class="app-container" justify-center fluid>
     <v-layout wrap justify-center>
       <BackBtn />
       <v-flex xs12 sm8 v-if="inCart">
@@ -32,7 +32,6 @@
 
         <br/>
         <section class="contacts">
-
           <h4>Контакты:</h4>
           <v-form v-model="contactValid" ref="contatcsForm" lazy-validation>
             <span>Ваше имя:</span>
@@ -115,12 +114,14 @@
         <input id='Cash'
           type="radio"
           v-model="userData.pay"
-          value="Cash"/> <label for="Cash">Оплата наличными</label>
+          value="Cash"
+        /><label for="Cash">Оплата наличными</label>
         <br>
         <input id='BankCard'
           type="radio"
           v-model="userData.pay"
-          value="BankCard"/> <label for="BankCard">Банковская карта</label>
+          value="BankCard"
+        /><label for="BankCard">Банковская карта</label>
       </section>
       <v-btn @click='buy'>Заказать</v-btn>
       <br/>

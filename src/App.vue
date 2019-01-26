@@ -14,11 +14,10 @@
 </template>
 
 <script>
-/* @ is an alias to ./src */
 import AppHeader from '@/components/AppHeader.vue'
 import ScrollUp from '@/components/ScrollUp.vue'
-import { mapGetters } from 'vuex'
 import NotificationPanel from '@/components/NotificationPanel'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'App',

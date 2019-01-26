@@ -6,24 +6,16 @@ export const changeTheme = state => {
   state.themeMode === 'theme--dark' ? state.themeMode = 'theme--light' : state.themeMode = 'theme--dark'
 }
 
-// export const changeLayout = (state, payload = undefined) => {
-//   if (payload) {
-//     state.layout = 'search-results'
-//   } else {
-//     if (state.layout === 'grid-view') {
-//       state.layout = 'list-view'
-//     } else {
-//       state.layout = 'grid-view'
-//     }
-//   }
-// }
-
 export const changeLayout = (state, payload = undefined) => {
-  payload
-    ? state.layout = 'search-results'
-    : state.layout === 'grid-view'
-      ? state.layout = 'list-view'
-      : state.layout = 'grid-view'
+  if (payload) {
+    state.layout = 'search-results'
+  } else {
+    if (state.layout === 'grid-view') {
+      state.layout = 'list-view'
+    } else {
+      state.layout = 'grid-view'
+    }
+  }
 }
 
 // Infinite scroll update function
@@ -51,7 +43,7 @@ export const priceSort = (state, payload) => {
   }
 }
 
-export const makeCart = async (state) => {
+export const makeCart = state => {
   /*
     Из массива fetchedData делаем объект вида
     cart = {
@@ -61,16 +53,13 @@ export const makeCart = async (state) => {
       }
     }
   */
-  await (() => {
-    return state.fetchedData.forEach((val, _) => {
-      Vue.set(state.cart, _, { 'book': val })
-    })
-  })()
-  await (() => {
-    for (const key in state.cart) {
-      Vue.set(state.cart[key], 'quantity', 0)
-    }
-  })()
+  state.fetchedData.forEach((val, _) => {
+    Vue.set(state.cart, _, { 'book': val })
+  })
+
+  for (const key in state.cart) {
+    Vue.set(state.cart[key], 'quantity', 0)
+  }
 }
 
 export const addToCart = (state, payload) => {
@@ -85,13 +74,11 @@ export const addToCart = (state, payload) => {
   Удаляет 1 копию книги из некоторого числа в корзине
 */
 export const removeFromCart = (state, payload) => {
-  return (() => {
-    for (const i in state.cart) {
-      if (state.cart[i].book.Bookname === payload) {
-        state.cart[i].quantity--
-      }
+  for (const i in state.cart) {
+    if (state.cart[i].book.Bookname === payload) {
+      state.cart[i].quantity--
     }
-  })()
+  }
 }
 
 // Удаление всех копий книги
@@ -132,9 +119,4 @@ export const showNotification = (state, { text, color }) => {
   state.snackbar.status = true
   state.snackbar.color = color
   state.snackbar.text = text
-  setTimeout(() => {
-    state.snackbar.status = false
-    state.snackbar.text = ''
-    state.snackbar.color = ''
-  }, 1600)
 }

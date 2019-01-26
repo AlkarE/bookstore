@@ -2,7 +2,7 @@
   <v-container fluid grid-list-xl>
     <v-layout wrap>
       <v-flex xs12 sm6 md3 v-for="book in bookData" :key="book.Bookname">
-        <v-card class="text-xs-center">
+        <v-card v-bind='themeColor' class="text-xs-center">
           <LazyImage :src="require(`@/assets/${book.src}`)" :alt="book.Bookname" />
           <p
             :class="themeMode === 'theme--dark' ? 'titl' : 'titl--dark'"
@@ -26,8 +26,9 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import BuyBtn from '../../components/Layout/BuyBtn'
-import LazyImage from '../../components/Layout/LazyImage'
+import BuyBtn from '@/components/Layout/BuyBtn'
+import LazyImage from '@/components/Layout/LazyImage'
+import themeColor from '@/mixins/themeColor'
 
 export default {
   name: 'GridView',
@@ -35,6 +36,7 @@ export default {
     BuyBtn,
     LazyImage
   },
+  mixins: [themeColor],
   computed: {
     ...mapGetters(['bookData', 'themeMode'])
   },

@@ -4,6 +4,7 @@
       temporary
       absolute
       v-model="drawer"
+      v-bind='themeColor'
     >
       <v-list>
          <v-list-tile
@@ -21,7 +22,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-toolbar>
+    <v-toolbar v-bind='themeColor'>
       <a v-if="color"><img src="data:image/svg+xml,%3Csvg fill='%23FFFFFF' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z'/%3E%3C/svg%3E" alt="menu" @click="drawer = !drawer" class="cur mt-1 hidden-md-and-up"></a>
       <a v-else><img src="data:image/svg+xml,%3Csvg fill='%23000000' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z'/%3E%3C/svg%3E" alt="menu" @click="drawer = !drawer" class="cur mt-1 hidden-md-and-up"></a>
       <v-toolbar-title class="cur" @click='goIndex' @click.middle='goIndex'>Book Store</v-toolbar-title>
@@ -40,8 +41,11 @@
 </template>
 
 <script>
+import themeColor from '@/mixins/themeColor'
+
 export default {
   name: 'AppHeader',
+  mixins: [themeColor],
   data: () => ({
     drawer: false,
     navLinks: [

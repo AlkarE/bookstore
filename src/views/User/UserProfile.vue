@@ -6,7 +6,7 @@
     </v-flex>
     <v-layout justify-center>
       <v-flex xs12 sm10>
-        <v-card>
+        <v-card v-bind="themeColor">
           <v-container fluid grid-list-lg>
             <v-layout wrap>
               <v-flex xs3 class="text-xs-center">
@@ -51,6 +51,7 @@
 import AdsView from '@/views/Layout/AdsView.vue'
 import UserTabs from './UserTabs'
 import BackBtn from '@/components/BackBtn'
+import themeColor from '@/mixins/themeColor'
 
 export default {
   name: 'UserProfile',
@@ -59,25 +60,25 @@ export default {
     UserTabs,
     BackBtn
   },
+  mixins: [themeColor],
   data: () => ({
     tabs: ['Корзина', 'Настройки', 'Закладки'],
     tab: ''
   }),
-  methods: {
-    logOut () {
-      this.$store.dispatch('logOut')
-    }
-  },
   beforeRouteEnter: (to, from, next) => {
     next(vm => {
       if (vm.$store.getters.userLogged === true) {
         return vm.$router.push(to.path)
       } else {
-        // global.console.log('no log')
         vm.$router.replace({ path: '/404', query: { redirect: to.fullPath } })
       }
     })
-  }
+  },
+  methods: {
+    logOut () {
+      this.$store.dispatch('logOut')
+    }
+  },
 }
 </script>
 
@@ -91,7 +92,6 @@ export default {
 
 .tab__title
   font-size 12px !important
-
   @media screen and (max-width: 600px)
     font-size 10px !important
 </style>

@@ -9,7 +9,7 @@
           <AdsView :addsLayout='"column"' />
         </v-flex>
         <v-flex xs10 class="mb-3 py-3">
-          <v-card>
+          <v-card v-bind='themeColor'>
             <v-layout class="pa-2" v-bind='binding'>
               <div class="mobile-poster" v-if="mobilePoster">
                 <img
@@ -18,12 +18,12 @@
                 >
               </div>
               <v-flex sm3>
-                <v-card-media
+                <v-img
                   :src='require(`../../assets/${product.src}`)'
                   height="320px"
                   contain
                   v-if="!mobilePoster"
-                ></v-card-media>
+                ></v-img>
               </v-flex>
               <v-flex sm8 class="list_view-top">
                 <p class="headline titl--dark">{{product.Bookname}}</p>
@@ -50,7 +50,7 @@
                       v-cloak
                       inline-template
                     >
-                      <v-layout class="cur socials" wrap justify-space-between>
+                      <div class="cur socials">
                         <network network="facebook" id="facebook" class="pr-1">
                           Facebook
                         </network>
@@ -66,7 +66,7 @@
                         <network network="telegram" id="telegram" class="pl-1">
                           Telegram
                         </network>
-                      </v-layout>
+                      </div>
                     </social-sharing>
                   </v-flex>
                 </v-layout>
@@ -88,6 +88,7 @@ import BackBtn from '@/components/BackBtn'
 import { mapGetters } from 'vuex'
 import BuyBtn from '@/components/Layout/BuyBtn'
 import viewportListener from '@/mixins/viewportListener'
+import themeColor from '@/mixins/themeColor'
 
 export default {
   name: 'ProductPage',
@@ -100,7 +101,7 @@ export default {
   data: () => ({
     listener: 'column'
   }),
-  mixins: [viewportListener],
+  mixins: [viewportListener, themeColor],
   beforeMount () {
     if (!this.product) {
       if (/^\d+$/.test(Number(this.$route.params.id))) {

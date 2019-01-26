@@ -41,4 +41,6 @@ export const bookmarks = state => state.bookmarks
 
 export const userName = state => state.userName
 
+export const snackbar = state => state.snackbar
+
 export const searchCloseBtn = state => state.searchCloseBtn

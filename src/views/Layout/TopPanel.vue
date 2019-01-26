@@ -24,9 +24,9 @@
 </template>
 
 <script>
-import ToggleBtns from '../../components/TopPanel/ToggleBtns'
-import SearchPanel from '../../components/TopPanel/SearchPanel'
-import SortPanel from '../../components/TopPanel/SortPanel'
+import ToggleBtns from '@/components/TopPanel/ToggleBtns'
+import SearchPanel from '@/components/TopPanel/SearchPanel'
+import SortPanel from '@/components/TopPanel/SortPanel'
 import { mapGetters } from 'vuex'
 
 export default {
