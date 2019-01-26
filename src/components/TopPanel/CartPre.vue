@@ -2,7 +2,7 @@
   <div class="ml-1">
     <v-badge color="indigo" overlap>
       <span slot="badge" v-if="inCart">{{inCart}}</span>
-      <v-menu offset-y transition="slide-y-transition" :min-width='280' :close-on-content-click='false'>
+      <v-menu bottom left offset-y transition="slide-y-transition" :min-width='200' :close-on-content-click='false'>
         <img
           :src="themeMode === 'theme--dark'
           ? require('../../assets/icons/cart_light.svg')
@@ -11,7 +11,7 @@
           slot="activator"
           class="cart-image"
         >
-        <v-list v-if="inCart">
+        <v-list v-if="inCart" v-bind='themeColor'>
           <template v-for="(book,i) in cart">
             <v-list-tile :key='i' v-if="book.quantity > 0">
               <span>{{book.book.Bookname}}</span>
@@ -36,8 +36,8 @@
             <span class="cur" @click='goPurchase'>Оформить заказ</span>
           </div>
         </v-list>
-        <div class="text-xs-center" v-else>
-          <b class="my-3">Тут ничего нет!</b>
+        <div v-else class="text-xs-center py-2">
+          <b>Тут ничего нет!</b>
         </div>
       </v-menu>
     </v-badge>
@@ -46,9 +46,11 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex'
+import themeColor from '@/mixins/themeColor'
 
 export default {
   name: 'CartPre',
+  mixins: [themeColor],
   computed: {
     ...mapGetters(['inCart', 'cart', 'themeMode', 'uid'])
   },

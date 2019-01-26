@@ -2,16 +2,15 @@ import router from '../router'
 import axios from 'axios'
 
 const DATA_URL = `http://159.65.201.166:3228/books/`
-// const DATA_URL = `http://localhost:3228/books/`
 
 export const fetchBookData = async ({ state, commit }) => {
   try {
     const res = await axios.get(DATA_URL)
     const data = res.data.books
     // console.log(data) // expect 34 objects in array [{}]
-    state.fetchedData = await Array.from(data)
-    await commit('updateScrollData', data)
-    await commit('makeCart')
+    state.fetchedData = Array.from(data)
+    commit('updateScrollData', data)
+    commit('makeCart')
   } catch (err) {
     global.console.log(err)
     throw new Error(err)
@@ -34,11 +33,11 @@ export const changeLayout = ({ commit }) => {
   commit('updateScrollData')
 }
 
-export const getProductId = async ({ state, commit }, id) => {
+export const getProductId = ({ state, commit }, id) => {
   state.product = null
-  state.product = await state.fetchedData.filter(book => book.id === id)
-  state.product = await state.product[0]
-  await router.push(`/book/${id}`)
+  state.product = state.fetchedData.find(book => book.id === id)
+  state.product = state.product
+  router.push(`/book/${id}`)
   commit('clearScrollData')
 }
 

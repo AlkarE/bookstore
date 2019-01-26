@@ -1,12 +1,12 @@
 <template>
-  <v-layout justify-center>
+  <v-layout justify-center fill-height>
     <v-flex xs10 offset-xs0 offset-sm2>
       <v-layout wrap :class="binding">
         <v-flex xs12 class="ml-2">
           <p>Рекомендуем ознакомиться:</p>
         </v-flex>
         <v-flex md3 class="ma-2 rec-up" v-for="book in recBooks" :key="book.id">
-          <v-card class="text-xs-center">
+          <v-card v-bind="themeColor" height="100%" class="text-xs-center">
             <img class="rec-image" :src="require(`@/assets/${book.src}`)">
             <p class="titl">{{book.Bookname}}</p>
             <v-layout>
@@ -27,6 +27,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import viewportListener from '@/mixins/viewportListener'
+import themeColor from '@/mixins/themeColor'
 
 export default {
   name: 'RecommendedBooks',
@@ -34,7 +35,7 @@ export default {
     books: [],
     listener: 'justify-center'
   }),
-  mixins: [viewportListener],
+  mixins: [viewportListener, themeColor],
   computed: {
     recBooks () {
       return this.books
@@ -55,7 +56,7 @@ export default {
       const rnd2 = Math.floor(rnd1 / 2)
       const rnd3 = this.fetchedData.length - rnd1
       /*
-        Получаем id текучего пути (это строка!), где id - индекс книги в массиве state.fetchedData
+        Получаем id текучего пути, где id - индекс книги в массиве state.fetchedData
       */
       const routeId = this.$route.params.id
       const id = this.fetchedData.findIndex(book => book.id === +routeId)

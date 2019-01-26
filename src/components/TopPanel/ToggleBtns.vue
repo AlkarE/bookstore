@@ -3,7 +3,7 @@
     <div v-if="searchStatus">
       <SearchPanel />
     </div>
-    <v-layout align-center justify-center v-else>
+    <v-layout v-else align-center justify-center>
       <v-btn
         icon
         @click='showSearch'
@@ -33,7 +33,7 @@
           class="btn-icons"
         >
       </v-btn>
-      <v-btn icon v-if='userLogged' @click='goUserProfile' title="Просмотреть профиль">
+      <v-btn v-if='userLogged' icon @click='goUserProfile' title="Просмотреть профиль">
         <!-- User picture -->
         <img
           :src="themeMode === 'theme--dark'
@@ -44,7 +44,7 @@
         >
       </v-btn>
 
-      <v-btn icon @click.stop="dialog = true" v-else title="Войти">
+      <v-btn v-else icon @click.stop="dialog = true" title="Войти">
         <img
           :src="themeMode === 'theme--dark'
           ? require('../../assets/icons/ac-no-ava_d.svg')
@@ -53,8 +53,8 @@
           class="profile_img"
         >
       </v-btn>
-      <v-dialog v-model="dialog" :max-width='380' v-if="dialog">
-        <v-card>
+      <v-dialog v-if="dialog" v-model="dialog" :max-width='380'>
+        <v-card v-bind='themeColor'>
           <component :is="com" @reg='reg' @close="close" class="dialog-bounce"></component>
           <v-card-actions>
             <v-btn color="primary" flat @click.stop="close">Close</v-btn>
@@ -68,8 +68,9 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import SearchPanel from '../../components/TopPanel/SearchPanel'
-import CartPre from '../../components/TopPanel/CartPre'
+import SearchPanel from '@/components/TopPanel/SearchPanel'
+import CartPre from '@/components/TopPanel/CartPre'
+import themeColor from '@/mixins/themeColor'
 
 const LogIn = () => import(/* webpackChunkName: "authDialogs" */ '@/components/Auth/LogIn')
 const RegForm = () => import(/* webpackChunkName: "authDialogs" */ '@/components/Auth/RegForm')
@@ -93,6 +94,7 @@ export default {
     SearchPanel,
     CartPre
   },
+  mixins: [themeColor],
   data: () => ({
     dialog: false,
     com: 'log-in',

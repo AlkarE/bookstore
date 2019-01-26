@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-flex v-if="this.$store.state.search.length > 0">
       <v-flex xs12 v-for="book in this.$store.state.search" :key="book.Bookname">
-        <v-card class="my-2">
+        <v-card v-bind='themeColor' class="my-2">
           <v-layout v-bind='binding'>
             <v-flex xs12 sm3>
               <div class="text-xs-center mt-1">
@@ -11,9 +11,7 @@
             </v-flex>
             <v-flex xs12 sm8 offset-sm1 class="list_view-top pl-1">
               <div>
-                <div
-                  :class="themeMode === 'theme--dark' ? 'titl headline' : 'titl--dark headline'"
-                >
+                <div :class="themeMode === 'theme--dark' ? 'titl headline' : 'titl--dark headline'">
                   {{book.Bookname}}
                 </div>
                 <p>{{book.author}}</p>
@@ -45,6 +43,7 @@
 import { mapGetters, mapActions } from 'vuex'
 import BuyBtn from '../../components/Layout/BuyBtn'
 import viewportListener from '@/mixins/viewportListener'
+import themeColor from '@/mixins/themeColor'
 
 export default {
   name: 'search-results',
@@ -54,7 +53,7 @@ export default {
   data: () => ({
     listener: 'wrap'
   }),
-  mixins: [viewportListener],
+  mixins: [viewportListener, themeColor],
   computed: {
     ...mapGetters(['bookData', 'themeMode'])
   },
@@ -64,7 +63,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .poster {
   width: 100%;
   height: auto;
