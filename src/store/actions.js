@@ -1,13 +1,12 @@
 import router from '../router'
 import axios from 'axios'
 
-const DATA_URL = `http://159.65.201.166:3228/books/`
+const DATA_URL = `https://bookstore-backend-demo.herokuapp.com/books`
 
 export const fetchBookData = async ({ state, commit }) => {
   try {
     const res = await axios.get(DATA_URL)
     const data = res.data.books
-    // console.log(data) // expect 34 objects in array [{}]
     state.fetchedData = Array.from(data)
     commit('updateScrollData', data)
     commit('makeCart')
@@ -19,7 +18,7 @@ export const fetchBookData = async ({ state, commit }) => {
 
 export const fetchDirectBook = async ({ state }, id) => {
   try {
-    const res = await axios.get(`${DATA_URL}${id}`)
+    const res = await axios.get(`${DATA_URL}/${id}`)
     state.product = res.data
   } catch (err) {
     global.console.log(err)
