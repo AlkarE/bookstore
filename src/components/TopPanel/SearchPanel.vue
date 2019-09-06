@@ -7,6 +7,7 @@
         id="testing"
         v-model.lazy.trim="search"
         @keyup.enter="searchIt"
+        v-bind='themeColor'
       ></v-text-field>
       <div class="input-btn" @click='searchIt' title="Искать"></div>
     </div>
@@ -24,11 +25,14 @@
 </template>
 
 <script>
+import themeColor from '@/mixins/themeColor'
+
 export default {
   name: 'SearchPanel',
   data: () => ({
     search: ''
   }),
+  mixins: [themeColor],
   computed: {
     themeMode () {
       return this.$store.getters.themeMode

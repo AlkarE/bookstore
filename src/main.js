@@ -4,8 +4,10 @@ import App from './App.vue'
 import router from './router'
 import { store } from './store'
 import SocialSharing from 'vue-social-sharing'
+import { LazyImageDirective } from '@/helpers'
 
 Vue.use(SocialSharing)
+Vue.directive('lazyload', LazyImageDirective)
 
 Vue.config.productionTip = false
 

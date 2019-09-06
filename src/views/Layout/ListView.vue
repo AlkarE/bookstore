@@ -39,7 +39,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import BuyBtn from '@/components/Layout/BuyBtn'
-import LazyImage from '@/components/Layout/LazyImage'
+import LazyImage from '@/components/Layout/LazyImage.js'
 import viewportListener from '@/mixins/viewportListener'
 import themeColor from '@/mixins/themeColor'
 

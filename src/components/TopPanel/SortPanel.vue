@@ -3,6 +3,7 @@
     <v-select
       :items="priceSort"
       v-model="sortBy"
+      v-bind='themeColor'
       label="Сортировать:"
       single-line
       append-icon=''
@@ -11,6 +12,8 @@
 </template>
 
 <script>
+import themeColor from '@/mixins/themeColor'
+
 export default {
   name: 'SortPanel',
   data: () => ({
@@ -18,15 +21,16 @@ export default {
     priceSort: ['Цена: по убыванию', 'Цена: по возрастанию'],
     sortBy: ''
   }),
+  mixins: [themeColor],
   watch: {
-    async sortBy (newVal) {
+    sortBy (newVal) {
       if (newVal === this.priceSort[0]) {
         this.$store.commit('priceSort')
       } else {
         this.$store.commit('priceSort', 'payload')
       }
-      await this.$store.commit('clearScrollData')
-      await this.$store.commit('updateScrollData')
+      this.$store.commit('clearScrollData')
+      this.$store.commit('updateScrollData')
     }
   }
 }
